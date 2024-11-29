@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+         #
+#    By: codespace <codespace@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/06 20:27:40 by acarpent          #+#    #+#              #
-#    Updated: 2024/11/27 14:53:14 by acarpent         ###   ########.fr        #
+#    Updated: 2024/11/29 11:06:18 by codespace        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ MKDIR = mkdir -p
 
 LIBFT_MAKE = make -s -C $(LIB_DIR)
 LIBFT_PATH = $(LIB_DIR)libft.a
+Includes = -I $(HEADER_DIR)
 
 ######  MLX PATH ######
 
@@ -45,7 +46,10 @@ MLX_EX = $(MLX_DIR)libmlx.a
 
 ######  SOURCES  ######
 
-SRCS_FILES =
+SRCS_FILES = Main_functions/main.c\
+				Parsing/parsing.c\
+				Initialisation/init.c\
+
 SRCS = $(addprefix $(SRCS_DIR), $(SRCS_FILES))			
 
 ######  OBJECTS  ######
@@ -60,7 +64,6 @@ $(MLX_EX):
 	@echo "$(GREEN)MLX compilation in progress...$(NC)"
 	@$(MAKE) -s -C $(MLX_DIR)
 	@echo "$(GREEN)MLX compilation completed!$(NC)"
-	@clear
 	
 $(NAME): $(OBJS_DIR) $(OBJS_FILES)
 	@echo "$(GREEN)Compilation in progress...$(NC)"
@@ -75,7 +78,7 @@ $(OBJS_DIR):
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c
 	@$(MKDIR) $(dir $@)
-	@$(COMP) $(CFLAGS) -I $(HEADER_DIR) -c $< -o $@
+	@$(COMP) $(CFLAGS) $(Includes) -c $< -o $@
 
 #Clean objects files and dependencies
 

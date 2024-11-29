@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 14:14:51 by acarpent          #+#    #+#             */
-/*   Updated: 2024/11/27 14:27:13 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/11/29 11:20:01 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 
 /*---------------------------INCLUDES-------------------------------*/
 
-# include "../lib/libft.h"
+# include "../libft/libft.h"
 # include "../mlx/mlx.h"
+# include "struct.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <sys/time.h>
@@ -25,10 +26,20 @@
 # include <string.h>
 # include <math.h>
 
-
-/*----------------------Structs and lists---------------------------*/
-
-
 /*------------------------MAIN FUNCTIONS----------------------------*/
+
+int		main(int ac, char **av, char **env);
+
+/*-----------------------------INIT---------------------------------*/
+
+void	_data_init(t_game *game);
+void	_player_init(t_game *game);
+void	_ray_init(t_game *game);
+void	_mlx_init(t_game *game);
+
+/*----------------------------PARSING-------------------------------*/
+
+void	_checkname(char *name);
+int		_envcheck(char **env);
 
 #endif
