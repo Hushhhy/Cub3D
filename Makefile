@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: codespace <codespace@student.42.fr>        +#+  +:+       +#+         #
+#    By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/06 20:27:40 by acarpent          #+#    #+#              #
-#    Updated: 2024/11/29 11:06:18 by codespace        ###   ########.fr        #
+#    Updated: 2024/12/02 15:13:59 by acarpent         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,8 +46,11 @@ MLX_EX = $(MLX_DIR)libmlx.a
 
 ######  SOURCES  ######
 
-SRCS_FILES = Main_functions/main.c\
+SRCS_FILES = 	Main_functions/main.c\
 				Parsing/parsing.c\
+				Parsing/parsing_utils.c\
+				Parsing/file_parsing.c\
+				Parsing/file_parsing_utils.c\
 				Initialisation/init.c\
 
 SRCS = $(addprefix $(SRCS_DIR), $(SRCS_FILES))			

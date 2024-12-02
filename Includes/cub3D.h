@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 14:14:51 by acarpent          #+#    #+#             */
-/*   Updated: 2024/11/29 11:20:01 by codespace        ###   ########.fr       */
+/*   Updated: 2024/12/02 16:29:01 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,16 @@ void	_mlx_init(t_game *game);
 
 void	_checkname(char *name);
 int		_envcheck(char **env);
+int     _getfile(t_game *game, char *file);
+int	    _get_file_size(t_game *game);
+char	**_gnl_in_file(t_game *game, int lc);
+void	_parse_file(t_game *game);
+void	_north_check(t_game *game, char *line);
+void	_south_check(t_game *game, char *line);
+void	_east_check(t_game *game, char *line);
+void	_west_check(t_game *game, char *line);
+void	_ceiling_check(t_game *game, char *line);
+void	_floor_check(t_game *game, char *line);
+char	*_new_alloc(int start, char *line);
 
 #endif
