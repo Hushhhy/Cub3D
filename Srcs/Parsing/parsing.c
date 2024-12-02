@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/29 10:53:52 by codespace         #+#    #+#             */
-/*   Updated: 2024/11/29 11:37:19 by codespace        ###   ########.fr       */
+/*   Created: 2024/12/02 12:22:27 by acarpent          #+#    #+#             */
+/*   Updated: 2024/12/02 14:48:41 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	_checkname(char *name)
 {
 	char	*ext;
+
 	ext = ft_strrchr(name, '.');
 	if (!ext || ft_strncmp(ext, ".cub\0", 5))
 	{
@@ -30,4 +31,25 @@ int	_envcheck(char **env)
 	return (0);
 }
 
+int	_getfile(t_game *game, char *file)
+{
+	int		lc;
 
+	lc = 0;
+	game->data.fd = open(file, O_RDONLY);
+	if (game->data.fd < 0)
+		return (0);
+	lc = _get_file_size(game);
+	close(game->data.fd);
+	game->data.fd = open(file, O_RDONLY);
+	game->data.file = _gnl_in_file(game, lc);
+	if (!game->data.file)
+		return (0);
+	close(game->data.fd);
+	return (1);
+}
+
+// char	**_get_map()
+// {
+	
+// }
