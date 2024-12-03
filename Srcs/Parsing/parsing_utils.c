@@ -6,18 +6,13 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 13:10:57 by acarpent          #+#    #+#             */
-/*   Updated: 2024/12/02 16:28:27 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/12/03 15:18:52 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-// void	_parse_map()
-// {
-	
-// }
-
-int	_get_file_size(t_game *game)
+int	_get_size(t_game *game)
 {
 	char	*line;
 	int		i;
@@ -68,4 +63,22 @@ char	*_new_alloc(int start, char *line)
 	if (!tmp)
 		return (NULL);
 	return (tmp);
+}
+
+char	**_get_file_to_map(t_game *game, int lc)
+{
+	char	**map;
+	int 	i;
+
+	i = 0;
+	map = malloc(sizeof(char *) * (lc + 1));
+	if (!map)
+		return (NULL);
+	while (game->data.file[i])
+	{
+		map[i] = game->data.file[i];
+		i++;
+	}
+	map[i] = NULL;
+	return (map);
 }

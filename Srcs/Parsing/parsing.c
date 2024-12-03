@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 12:22:27 by acarpent          #+#    #+#             */
-/*   Updated: 2024/12/02 14:48:41 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/12/03 15:20:29 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	_getfile(t_game *game, char *file)
 	game->data.fd = open(file, O_RDONLY);
 	if (game->data.fd < 0)
 		return (0);
-	lc = _get_file_size(game);
+	lc = _get_size(game);
 	close(game->data.fd);
 	game->data.fd = open(file, O_RDONLY);
 	game->data.file = _gnl_in_file(game, lc);
@@ -49,7 +49,35 @@ int	_getfile(t_game *game, char *file)
 	return (1);
 }
 
-// char	**_get_map()
-// {
-	
-// }
+int	_get_map_size(t_game *game, int i)
+{
+	while (game->data.file[i])
+		i++;
+	return (i);
+}
+
+int	_get_map(t_game *game, int start)
+{
+	int		lc;
+	int		map_start;
+	char	**file;
+
+	file = game->data.file;
+	lc = _get_map_size(game, start);
+	game->data.map = malloc((lc + 1) * sizeof(char *));
+	if (!game->data.map)
+		return (0);
+	printf("%s", file[start]);
+	map_start = 0;
+	while (file[++start])
+	{
+		game->data.map[map_start] = ft_strdup(file[start]);
+		if (!game->data.map[map_start])
+			return (0);
+		map_start++;
+	}
+	printf("%s", file[start]);
+	game->data.map[map_start] = NULL;
+	_parse_map(game);
+	return (1);
+}

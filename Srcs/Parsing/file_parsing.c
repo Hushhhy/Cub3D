@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 14:56:40 by acarpent          #+#    #+#             */
-/*   Updated: 2024/12/02 16:31:55 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/12/03 14:50:04 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,19 @@ void	_parse_file(t_game *game)
 		_west_check(game, game->data.file[i]);
 		_floor_check(game, game->data.file[i]);
 		_ceiling_check(game, game->data.file[i]);
-		// _early_map(game->data.file[i]);
+		if (!game->data.no_texture || !game->data.so_texture
+			|| !game->data.ea_texture || !game->data.we_texture
+			|| !game->data.ceiling_color || !game->data.floor_color)
+			_early_map(game->data.file[i]);
+		else if (game->data.no_texture && game->data.so_texture
+			&& game->data.ea_texture && game->data.we_texture
+			&& game->data.ceiling_color && game->data.floor_color)
+		{
+			_get_map(game, i);
+			return ;
+		}
 		i++;
 	}
-	if (!game->data.no_texture || !game->data.so_texture
-		|| !game->data.ea_texture || !game->data.we_texture
-		|| !game->data.ceiling_color || !game->data.floor_color)
-		ft_putstr_fd("Error\n Wrong map format\n", 2);
 }
 
 void	_north_check(t_game *game, char *line)
@@ -49,14 +55,17 @@ void	_north_check(t_game *game, char *line)
 		while (line[i] && (line[i] == ' ' || line[i] == '\t'))
 			i++;
 		if (!game->data.no_texture)
-			game->data.no_texture = _new_alloc(i, line);
-		while (line[i] && (line[i] != ' ' && line[i] != '\t'))
 		{
-			game->data.no_texture[j] = line[i];
-			i++;
-			j++;
+			game->data.no_texture = _new_alloc(i, line);
+			while (line[i] && (line[i] != ' ' && line[i] != '\t'))
+				game->data.no_texture[j++] = line[i++];
+			game->data.no_texture[j] = '\0';
 		}
-		game->data.no_texture[j] = '\0';
+		else
+		{
+			ft_putstr_fd("Error\nWrong map format: 1\n", 2);
+			exit(1);
+		}
 	}
 }
 
@@ -75,14 +84,17 @@ void	_south_check(t_game *game, char *line)
 		while (line[i] && (line[i] == ' ' || line[i] == '\t'))
 			i++;
 		if (!game->data.so_texture)
-			game->data.so_texture = _new_alloc(i, line);
-		while (line[i] && (line[i] != ' ' && line[i] != '\t'))
 		{
-			game->data.so_texture[j] = line[i];
-			j++;
-			i++;
+			game->data.so_texture = _new_alloc(i, line);
+			while (line[i] && (line[i] != ' ' && line[i] != '\t'))
+				game->data.so_texture[j++] = line[i++];
+			game->data.so_texture[j] = '\0';
 		}
-		game->data.so_texture[j] = '\0';
+		else
+		{
+			ft_putstr_fd("Error\nWrong map format: 2\n", 2);
+			exit(1);
+		}
 	}
 }
 
@@ -101,14 +113,17 @@ void	_east_check(t_game *game, char *line)
 		while (line[i] && (line[i] == ' ' || line[i] == '\t'))
 			i++;
 		if (!game->data.ea_texture)
-			game->data.ea_texture = _new_alloc(i, line);
-		while (line[i] && (line[i] != ' ' && line[i] != '\t'))
 		{
-			game->data.ea_texture[j] = line[i];
-			j++;
-			i++;
+			game->data.ea_texture = _new_alloc(i, line);
+			while (line[i] && (line[i] != ' ' && line[i] != '\t'))
+				game->data.ea_texture[j++] = line[i++];
+			game->data.ea_texture[j] = '\0';
 		}
-		game->data.ea_texture[j] = '\0';
+		else
+		{
+			ft_putstr_fd("Error\nWrong map format: 3\n", 2);
+			exit(1);
+		}
 	}
 }
 
@@ -127,13 +142,16 @@ void	_west_check(t_game *game, char *line)
 		while (line[i] && (line[i] == ' ' || line[i] == '\t'))
 			i++;
 		if (!game->data.we_texture)
-			game->data.we_texture = _new_alloc(i, line);
-		while (line[i] && (line[i] != ' ' && line[i] != '\t'))
 		{
-			game->data.we_texture[j] = line[i];
-			j++;
-			i++;
+			game->data.we_texture = _new_alloc(i, line);
+			while (line[i] && (line[i] != ' ' && line[i] != '\t'))
+				game->data.we_texture[j++] = line[i++];
+			game->data.we_texture[j] = '\0';
 		}
-		game->data.we_texture[j] = '\0';
+		else
+		{
+			ft_putstr_fd("Error\nWrong map format: 4\n", 2);
+			exit(1);
+		}
 	}
 }
