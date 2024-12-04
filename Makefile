@@ -6,7 +6,7 @@
 #    By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/06 20:27:40 by acarpent          #+#    #+#              #
-#    Updated: 2024/12/03 16:01:09 by acarpent         ###   ########.fr        #
+#    Updated: 2024/12/04 15:00:04 by acarpent         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,11 +46,12 @@ MLX_EX = $(MLX_DIR)/libmlx.a
 
 ######  SOURCES  ######
 
-SRCS_FILES = 	Main_functions/main.c\
+SRCS_FILES = Main_functions/main.c\
 				Parsing/parsing.c\
 				Parsing/parsing_utils.c\
 				Parsing/file_parsing.c\
 				Parsing/file_parsing_utils.c\
+				Parsing/file_parsing_utils1.c\
 				Parsing/map_parsing.c\
 				Initialisation/init.c\
 
@@ -69,10 +70,10 @@ $(MLX_EX):
 	@$(MAKE) -s -C $(MLX_DIR)
 	@echo "$(GREEN)MLX compilation completed!$(NC)"
 	
-$(NAME): $(OBJS_DIR) $(OBJS_FILES)
+$(NAME): $(OBJS_DIR) $(OBJS_FILES) $(MLX_EX)
 	@echo "$(GREEN)Compilation in progress...$(NC)"
 	@$(LIBFT_MAKE)
-	@$(COMP) $(CFLAGS) $(OBJS_FILES) $(MLX_FLAGS) -o $(NAME) $(LDFLAGS) -lft
+	@$(COMP) $(CFLAGS) $(OBJS_FILES) $(MLX_EX) $(MLX_FLAGS) -o $(NAME) $(LDFLAGS) -lft
 	@echo "$(GREEN)Compilation completed!$(NC)"
 	
 #Creer le repertoire 'Objs' et compiles C source files into object files
