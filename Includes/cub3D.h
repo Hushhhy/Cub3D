@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 14:14:51 by acarpent          #+#    #+#             */
-/*   Updated: 2024/12/03 15:17:23 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/12/04 15:23:44 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,13 @@ void	_west_check(t_game *game, char *line);
 void	_ceiling_check(t_game *game, char *line);
 void	_floor_check(t_game *game, char *line);
 char	*_new_alloc(int start, char *line);
-void	_early_map(char *line);
+void	_char_check(char *line);
 int 	_get_map(t_game *game, int start);
 void	_parse_map(t_game *game);
-char	**_skip_this(char **file);
+void	_verify(t_game *game, int start);
+int	    _is_invalid(char *line, t_game *game);
+int	    _emptylines(t_game *game, int start);
+void	_after_map(t_game *game, int last);
+int	    _line_empty(char *line);
 
 #endif

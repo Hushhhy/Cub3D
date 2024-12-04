@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 10:35:31 by codespace         #+#    #+#             */
-/*   Updated: 2024/11/29 11:40:23 by codespace        ###   ########.fr       */
+/*   Updated: 2024/12/04 13:53:55 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 typedef struct s_data {
 	char	**file;
-	int		lines_count;
 	int		fd;
 	char	*no_texture;
 	char	*so_texture;
@@ -28,6 +27,7 @@ typedef struct s_data {
 } t_data;
 
 typedef struct s_player {
+	int		p_count;
 	double	pos_x;
 	double	pos_y;
 	double	dir_x;
