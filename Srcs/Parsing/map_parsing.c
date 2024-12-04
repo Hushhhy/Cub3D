@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 14:35:10 by acarpent          #+#    #+#             */
-/*   Updated: 2024/12/03 15:14:13 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/12/04 11:53:37 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,6 @@
 void	_parse_map(t_game *game)
 {
 	int i = 0;
-	printf("%s", game->data.map[i]);
+	while (game->data.map[i++])
+		printf("%s", game->data.map[i]);
 }

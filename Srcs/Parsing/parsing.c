@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 12:22:27 by acarpent          #+#    #+#             */
-/*   Updated: 2024/12/03 15:20:29 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/12/04 12:00:03 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ int	_get_map(t_game *game, int start)
 	game->data.map = malloc((lc + 1) * sizeof(char *));
 	if (!game->data.map)
 		return (0);
-	printf("%s", file[start]);
 	map_start = 0;
 	while (file[++start])
 	{
@@ -76,7 +75,6 @@ int	_get_map(t_game *game, int start)
 			return (0);
 		map_start++;
 	}
-	printf("%s", file[start]);
 	game->data.map[map_start] = NULL;
 	_parse_map(game);
 	return (1);

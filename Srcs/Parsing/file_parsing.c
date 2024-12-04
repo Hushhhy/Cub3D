@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 14:56:40 by acarpent          #+#    #+#             */
-/*   Updated: 2024/12/03 14:50:04 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/12/04 15:52:19 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,11 @@ void	_parse_file(t_game *game)
 		if (!game->data.no_texture || !game->data.so_texture
 			|| !game->data.ea_texture || !game->data.we_texture
 			|| !game->data.ceiling_color || !game->data.floor_color)
-			_early_map(game->data.file[i]);
-		else if (game->data.no_texture && game->data.so_texture
-			&& game->data.ea_texture && game->data.we_texture
-			&& game->data.ceiling_color && game->data.floor_color)
+			_char_check(game->data.file[i]);
+		else
 		{
-			_get_map(game, i);
+			_verify(game, i);
+			// _getmap(game);
 			return ;
 		}
 		i++;
@@ -63,7 +62,7 @@ void	_north_check(t_game *game, char *line)
 		}
 		else
 		{
-			ft_putstr_fd("Error\nWrong map format: 1\n", 2);
+			ft_putstr_fd("Error\nInvalid file: 1\n", 2);
 			exit(1);
 		}
 	}
@@ -92,7 +91,7 @@ void	_south_check(t_game *game, char *line)
 		}
 		else
 		{
-			ft_putstr_fd("Error\nWrong map format: 2\n", 2);
+			ft_putstr_fd("Error\nInvalid file: 2\n", 2);
 			exit(1);
 		}
 	}
@@ -121,7 +120,7 @@ void	_east_check(t_game *game, char *line)
 		}
 		else
 		{
-			ft_putstr_fd("Error\nWrong map format: 3\n", 2);
+			ft_putstr_fd("Error\nInvalid file: 3\n", 2);
 			exit(1);
 		}
 	}
@@ -150,7 +149,7 @@ void	_west_check(t_game *game, char *line)
 		}
 		else
 		{
-			ft_putstr_fd("Error\nWrong map format: 4\n", 2);
+			ft_putstr_fd("Error\nInvalid file: 4\n", 2);
 			exit(1);
 		}
 	}

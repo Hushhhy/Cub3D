@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 12:22:38 by acarpent          #+#    #+#             */
-/*   Updated: 2024/12/02 13:24:40 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/12/04 14:01:45 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	_data_init(t_game *game)
 {
 	game->data.file = NULL;
-	game->data.lines_count = -1;
 	game->data.fd = -1;
 	game->data.no_texture = NULL;
 	game->data.so_texture = NULL;
