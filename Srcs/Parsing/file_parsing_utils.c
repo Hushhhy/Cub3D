@@ -35,7 +35,7 @@ void	_floor_check(t_game *game, char *line)
 		}
 		else
 		{
-			ft_putstr_fd("Error\nInvalid file: 5\n", 2);
+			ft_putstr_fd("Error\nToo many floor colors\n", 2);
 			exit(1);
 		}
 	}
@@ -64,7 +64,7 @@ void	_ceiling_check(t_game *game, char *line)
 		}
 		else
 		{
-			ft_putstr_fd("Error\nInvalid file: 6\n", 2);
+			ft_putstr_fd("Error\nToo many Ceiling colors\n", 2);
 			exit(1);
 		}
 	}
@@ -73,10 +73,8 @@ void	_ceiling_check(t_game *game, char *line)
 void	_char_check(char *line)
 {
 	int	i;
-	int	j;
 
 	i = 0;
-	j = 0;
 	while (line[i] && (line[i] == ' ' || line[i] == '\t' || line[i] == '\n'))
 		i++;
 	if (line[i] == '\0')
@@ -85,7 +83,7 @@ void	_char_check(char *line)
 		&& ft_strncmp(line, "EA ", 3) && ft_strncmp(line, "WE ", 3)
 		&& ft_strncmp(line, "C ", 2) && ft_strncmp(line, "F ", 2))
 	{
-		ft_putstr_fd("Error\nInvalid file: 7\n", 2);
+		ft_putstr_fd("Error\nInvalid character in file\n", 2);
 		exit(1);
 	}
 }
@@ -107,14 +105,14 @@ void	_verify(t_game *game, int i)
 			break ;
 		if (_is_invalid(line, game))
 		{
-			ft_putstr_fd("Error\nInvalid file: 8\n", 2);
+			ft_putstr_fd("Error\nInvalid character in map\n", 2);
 			exit(1);
 		}
 	}
 	_after_map(game, last);
 	if (i == start || game->player.p_count != 1 || last == -1)
 	{
-		ft_putstr_fd("Error\nInvalid file: 9\n", 2);
+		ft_putstr_fd("Error\nInvalid file format\n", 2);
 		exit(1);
 	}
 }

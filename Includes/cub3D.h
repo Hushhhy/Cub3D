@@ -60,5 +60,9 @@ int	    _is_invalid(char *line, t_game *game);
 int	    _emptylines(t_game *game, int start);
 void	_after_map(t_game *game, int last);
 int	    _line_empty(char *line);
+void	_recheck(t_game *game);
+void	_getmap(t_game *game, int i);
+int	    _get_map_size(t_game *game, int i);
+void	_copy_map(t_game *game, char **file, int map_end, int start);
 
 #endif

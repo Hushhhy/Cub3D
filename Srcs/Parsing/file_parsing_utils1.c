@@ -27,6 +27,11 @@ int	_emptylines(t_game *game, int start)
 			i++;
 		if (game->data.file[lc][i] == '1')
 			break ;
+		else if (game->data.file[lc][i] != '\0' && game->data.file[lc][i] != '1')
+		{
+			ft_putstr_fd("Error\nInvalid file format\n", 2);
+			exit(1);
+		}
 		lc++;
 	}
 	return (lc);
@@ -58,9 +63,22 @@ void	_after_map(t_game *game, int last)
 		line = game->data.file[i];
 		if (!_line_empty(line))
 		{
-			ft_putstr_fd("Error\nInvalid file: 10\n", 2);
+			ft_putstr_fd("Error\nCharacter after map\n", 2);
 			exit(1);
 		}
 		i++;
 	}
+}
+
+void	_recheck(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	_north_check(game, game->data.file[i]);
+	_south_check(game, game->data.file[i]);
+	_east_check(game, game->data.file[i]);
+	_west_check(game, game->data.file[i]);
+	_floor_check(game, game->data.file[i]);
+	_ceiling_check(game, game->data.file[i]);
 }

@@ -48,34 +48,3 @@ int	_getfile(t_game *game, char *file)
 	close(game->data.fd);
 	return (1);
 }
-
-int	_get_map_size(t_game *game, int i)
-{
-	while (game->data.file[i])
-		i++;
-	return (i);
-}
-
-int	_get_map(t_game *game, int start)
-{
-	int		lc;
-	int		map_start;
-	char	**file;
-
-	file = game->data.file;
-	lc = _get_map_size(game, start);
-	game->data.map = malloc((lc + 1) * sizeof(char *));
-	if (!game->data.map)
-		return (0);
-	map_start = 0;
-	while (file[++start])
-	{
-		game->data.map[map_start] = ft_strdup(file[start]);
-		if (!game->data.map[map_start])
-			return (0);
-		map_start++;
-	}
-	game->data.map[map_start] = NULL;
-	_parse_map(game);
-	return (1);
-}

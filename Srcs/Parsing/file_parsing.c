@@ -17,6 +17,7 @@ void	_parse_file(t_game *game)
 	int	i;
 
 	i = 0;
+	_emptyfile(game);
 	while (game->data.file[i])
 	{
 		_north_check(game, game->data.file[i]);
@@ -32,7 +33,7 @@ void	_parse_file(t_game *game)
 		else
 		{
 			_verify(game, i);
-			// _getmap(game);
+			_getmap(game, i);
 			return ;
 		}
 		i++;
@@ -62,7 +63,7 @@ void	_north_check(t_game *game, char *line)
 		}
 		else
 		{
-			ft_putstr_fd("Error\nInvalid file: 1\n", 2);
+			ft_putstr_fd("Error\nToo many north texture\n", 2);
 			exit(1);
 		}
 	}
@@ -91,7 +92,7 @@ void	_south_check(t_game *game, char *line)
 		}
 		else
 		{
-			ft_putstr_fd("Error\nInvalid file: 2\n", 2);
+			ft_putstr_fd("Error\nToo many south texture\n", 2);
 			exit(1);
 		}
 	}
@@ -120,7 +121,7 @@ void	_east_check(t_game *game, char *line)
 		}
 		else
 		{
-			ft_putstr_fd("Error\nInvalid file: 3\n", 2);
+			ft_putstr_fd("Error\nToo many east texture\n", 2);
 			exit(1);
 		}
 	}
@@ -149,7 +150,7 @@ void	_west_check(t_game *game, char *line)
 		}
 		else
 		{
-			ft_putstr_fd("Error\nInvalid file: 4\n", 2);
+			ft_putstr_fd("Error\nToo many west texture\n", 2);
 			exit(1);
 		}
 	}
