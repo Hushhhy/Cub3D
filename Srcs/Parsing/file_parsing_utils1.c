@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 14:59:33 by acarpent          #+#    #+#             */
-/*   Updated: 2024/12/04 15:43:32 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/12/06 13:15:57 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,20 @@ int	_emptylines(t_game *game, int start)
 	int	i;
 
 	lc = start + 1;
-	i = 0;
 	while (game->data.file[lc])
 	{
+		i = 0;
 		while (game->data.file[lc][i] && (game->data.file[lc][i] == ' '
 			|| game->data.file[lc][i] == '\t'
 			|| (game->data.file[lc][i] == '\n')))
 			i++;
-		if (game->data.file[lc][i] == '1')
-			break ;
-		else if (game->data.file[lc][i] != '\0' && game->data.file[lc][i] != '1')
+		if (game->data.file[lc][i] != '\0' && game->data.file[lc][i] != '1')
 		{
 			ft_putstr_fd("Error\nInvalid file format\n", 2);
 			exit(1);
 		}
+		else if (game->data.file[lc][i] == '1')
+			break ;
 		lc++;
 	}
 	return (lc);
@@ -69,16 +69,28 @@ void	_after_map(t_game *game, int last)
 		i++;
 	}
 }
-
-void	_recheck(t_game *game)
+void	_emptyfile(t_game *game)
 {
 	int	i;
+	int	j;
+	int flag;
 
 	i = 0;
-	_north_check(game, game->data.file[i]);
-	_south_check(game, game->data.file[i]);
-	_east_check(game, game->data.file[i]);
-	_west_check(game, game->data.file[i]);
-	_floor_check(game, game->data.file[i]);
-	_ceiling_check(game, game->data.file[i]);
+	flag = 0;
+	while (game->data.file[i])
+	{
+		j = 0;
+		while ((game->data.file[i][j] == ' ' || game->data.file[i][j] == '\t'
+			|| game->data.file[i][j] == '\n') && game->data.file[i][j])
+			j++;
+		if (!(game->data.file[i][j] == ' ' || game->data.file[i][j] == '\t'
+			|| game->data.file[i][j] == '\n') && game->data.file[i][j])
+			flag++;
+		i++;
+	}
+	if (flag == 0)
+	{
+		ft_putstr_fd("Error\nEmpty file\n", 2);
+		exit(1);		
+	}
 }

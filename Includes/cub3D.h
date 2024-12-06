@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 14:14:51 by acarpent          #+#    #+#             */
-/*   Updated: 2024/12/04 15:23:44 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/12/06 14:05:58 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <unistd.h>
 # include <string.h>
 # include <math.h>
+# include <stdbool.h>
 
 /*------------------------MAIN FUNCTIONS----------------------------*/
 
@@ -60,9 +61,8 @@ int	    _is_invalid(char *line, t_game *game);
 int	    _emptylines(t_game *game, int start);
 void	_after_map(t_game *game, int last);
 int	    _line_empty(char *line);
-void	_recheck(t_game *game);
 void	_getmap(t_game *game, int i);
 int	    _get_map_size(t_game *game, int i);
-void	_copy_map(t_game *game, char **file, int map_end, int start);
+void	_emptyfile(t_game *game);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/03 14:35:10 by acarpent          #+#    #+#             */
-/*   Updated: 2024/12/04 11:53:37 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/12/06 14:47:09 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	_getmap(t_game *game, int i)
 		k++;
 	}
 	game->data.map[k] = NULL;
-	_parse_map(game);
+	_check_the_map(game);
 }
 
 int	_get_map_size(t_game *game, int i)
@@ -51,14 +51,4 @@ int	_get_map_size(t_game *game, int i)
 		if (!_line_empty(file[start]))
 			size++;
 	return (size);
-}
-
-void	_parse_map(t_game *game)
-{
-	int i = 0;
-	while (game->data.map[i])
-	{
-		printf("%s", game->data.map[i]);
-		i++;
-	}
 }

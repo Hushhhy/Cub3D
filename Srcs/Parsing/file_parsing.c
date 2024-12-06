@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 14:56:40 by acarpent          #+#    #+#             */
-/*   Updated: 2024/12/04 15:52:19 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/12/06 13:08:03 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,16 @@ void	_parse_file(t_game *game)
 	_emptyfile(game);
 	while (game->data.file[i])
 	{
+		_char_check(game->data.file[i]);
 		_north_check(game, game->data.file[i]);
 		_south_check(game, game->data.file[i]);
 		_east_check(game, game->data.file[i]);
 		_west_check(game, game->data.file[i]);
 		_floor_check(game, game->data.file[i]);
 		_ceiling_check(game, game->data.file[i]);
-		if (!game->data.no_texture || !game->data.so_texture
-			|| !game->data.ea_texture || !game->data.we_texture
-			|| !game->data.ceiling_color || !game->data.floor_color)
-			_char_check(game->data.file[i]);
-		else
+		if (game->data.no_texture && game->data.so_texture
+			&& game->data.ea_texture && game->data.we_texture
+			&& game->data.ceiling_color && game->data.floor_color)
 		{
 			_verify(game, i);
 			_getmap(game, i);
