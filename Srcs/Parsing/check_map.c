@@ -6,93 +6,73 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 14:04:42 by acarpent          #+#    #+#             */
-/*   Updated: 2024/12/06 15:36:48 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/12/09 14:53:38 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-bool    _check_nb_player(char **map)
+void	_check_the_map(t_game *game)
 {
-    int     i;
-    int     j;
-    bool    flag;
-
-    i = 0;
-    j = 0;
-    flag = false;
-    while (map[j])
-    {
-        while (map[j][i])
-        {
-            if (map[j][i] == 'O' || map[j][i] == 'N'
-                || map[j][i] == 'E' || map[j][i] == 'S')
-            {
-                if (flag == true)
-                    return (false);
-                flag = true;
-            }
-            i++;
-        }
-        j++;
-    }
-    return (true);
+	if (!game->data.map)
+	{
+		ft_putstr_fd("No map\n", 2);
+		exit(1);
+	}
+	if (!_check_map_sides(game, game->data.map))
+	{
+		ft_putstr_fd("Side\n", 2);
+		exit(1);
+	}
+	if (_get_map_height(game->data.map) < 3)
+	{
+		ft_putstr_fd("too small\n", 2);
+		exit(1);
+	}
+	if (!_check_nb_player(game->data.map))
+	{
+		ft_putstr_fd("too many player\n", 2);
+		exit(1);
+	}
+	if (!_check_player_pos(game->data.map))
+	{
+		ft_putstr_fd("Wrong pos\n", 2);
+		exit(1);
+	}
 }
 
-bool    _check_closed_map(char **map, t_game *game)
+bool	_check_map_sides(t_game *game, char **map)
 {
-    int i;
-    int j;
+	int	i;
+	int	j;
 
-    i = 0;
-    game->data.map_width = _get_map_width(map);
-    game->data.map_height = _get_map_height(map);
-    while (map[i])
-    {
-        j = 0;
-        while (map[i][j] != game->data.map_width)
-        {
-            
-        }
-    }
+	if (!_check_bot_top(map, 0, 0))
+		return (false);
+	i = 1;
+	while (i < (game->data.map - 1))
+	{
+		j = ft_strlen(map[i]) - 1;
+		if (map[i][j] != '1')
+			return (false);
+		i++;
+	}
+	if (!check_bot_top(map, i, 0))
+		return (false);
 }
 
-void    _check_the_map(t_game *game)
+bool	_check_bot_top(char **map, int i, int j)
 {
-    if (_check_nb_player(game->data.map) == false)
-    {
-        ft_putstr_fd("Error\nPlayer number must be 1\n", 2);
-        exit(1);
-    }
-    if (_check_closed_map(game->data.map, game) == false)
-    {
-        ft_putstr_fd("Error\nWrong map format\n", 2);
-        exit(1);
-    }
+	if (!map || !map[i] || !map[i][j])
+		return (false);
+	while (map[i][j] && (map[i][j] == ' ' || map[i][j] == '\t'))
+		j++;
+	while (map[i][j])
+	{
+		if (map[i][j] != '1')
+			return (false);
+		j++;
+	}
+	return (true);
 }
 
-int _get_map_width(char **map)
-{
-    int i;
-    int width;
 
-    i = 1;
-    width = ft_strlen(map[0]);
-    while (map[i])
-    {
-        if (ft_strlen(map[i]) > width)
-            width = ft_strlen(map[i]);
-        i++;
-    }
-    return (width);
-}
-
-int _get_map_height(char **map)
-{
-    int i;
-    
-    i = 0;
-    while (map[i])
-        i++;
-    return (i);
-}

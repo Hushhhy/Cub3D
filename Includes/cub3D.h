@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 14:14:51 by acarpent          #+#    #+#             */
-/*   Updated: 2024/12/06 14:05:58 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/12/09 14:36:47 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@
 # include <math.h>
 # include <stdbool.h>
 
+/*--------------------------ERROR DEF-------------------------------*/
+
+
+
 /*------------------------MAIN FUNCTIONS----------------------------*/
 
 int		main(int ac, char **av, char **env);
@@ -40,29 +44,59 @@ void	_mlx_init(t_game *game);
 
 /*----------------------------PARSING-------------------------------*/
 
+/*---------------------------------*/
+/*--NAME--*/
+
 void	_checkname(char *name);
+
+/*---------------------------------*/
+/*--ENV--*/
+
 int		_envcheck(char **env);
+
+/*---------------------------------*/
+/*--GET FILE--*/
+
 int     _getfile(t_game *game, char *file);
-int	    _get_size(t_game *game);
 char	**_gnl_in_file(t_game *game, int lc);
+char	*_new_alloc(int start, char *line);
+
+/*---------------------------------*/
+/*--FILE PARSING--*/
+
 void	_parse_file(t_game *game);
+int	    _get_size(t_game *game);
+void	_char_check(char *line);
+void	_emptyfile(t_game *game);
+
+/*---------------------------------*/
+/*--TEXTURES && COLORS--*/
+
 void	_north_check(t_game *game, char *line);
 void	_south_check(t_game *game, char *line);
 void	_east_check(t_game *game, char *line);
 void	_west_check(t_game *game, char *line);
 void	_ceiling_check(t_game *game, char *line);
 void	_floor_check(t_game *game, char *line);
-char	*_new_alloc(int start, char *line);
-void	_char_check(char *line);
-int 	_get_map(t_game *game, int start);
-void	_parse_map(t_game *game);
+
+/*---------------------------------*/
+/*--GET MAP--*/
+
+int 	_getmap(t_game *game, int start);
 void	_verify(t_game *game, int start);
 int	    _is_invalid(char *line, t_game *game);
-int	    _emptylines(t_game *game, int start);
 void	_after_map(t_game *game, int last);
+int	    _emptylines(t_game *game, int start);
 int	    _line_empty(char *line);
-void	_getmap(t_game *game, int i);
 int	    _get_map_size(t_game *game, int i);
-void	_emptyfile(t_game *game);
+
+/*---------------------------------*/
+/*--MAP PARSING--*/
+
+void    _check_the_map(t_game *game);
+bool    _check_nb_player(char **map);
+int     _get_map_width(char **map);
+int     _get_map_height(char **map);
+
 
 #endif
