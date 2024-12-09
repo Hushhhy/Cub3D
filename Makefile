@@ -6,7 +6,7 @@
 #    By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/06 20:27:40 by acarpent          #+#    #+#              #
-#    Updated: 2024/12/06 11:00:55 by acarpent         ###   ########.fr        #
+#    Updated: 2024/12/09 13:47:51 by acarpent         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,6 +53,8 @@ SRCS_FILES = Main_functions/main.c\
 				Parsing/file_parsing_utils.c\
 				Parsing/file_parsing_utils1.c\
 				Parsing/map_parsing.c\
+				Parsing/check_map.c\
+				Parsing/check_map_utils.c\
 				Initialisation/init.c\
 
 SRCS = $(addprefix $(SRCS_DIR), $(SRCS_FILES))			
