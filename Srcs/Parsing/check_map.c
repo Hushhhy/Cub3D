@@ -85,7 +85,7 @@ bool	_check_rows(char **map, int y, int x)
 		if (map[y][i] == '1')
 			break ;
 		if (map[y][i] == ' ')
-			if (!_there_is_walls(map, y, i))
+			if (!_check_space_row(map, y, i))
 				return (false);
 		i--;
 	}
@@ -98,7 +98,7 @@ bool	_check_rows(char **map, int y, int x)
 		if (map[y][i] == '1')
 			break ;
 		if (map[y][i] == ' ')
-			if (!_there_is_walls(map, y, i))
+			if (!_check_space_row(map, y, i))
 				return (false);
 		i++;
 	}
@@ -118,7 +118,7 @@ bool	_check_cols(char **map, int y, int x)
 		if (map[i][x] == '1')
 			break ;
 		if (map[i][x] == ' ')
-			if (!_there_is_walls(map, i, x))
+			if (!_check_space_col(map, i, x))
 				return (false);
 		i--;
 	}
@@ -131,7 +131,7 @@ bool	_check_cols(char **map, int y, int x)
 		if (map[i][x] == '1')
 			break ;
 		if (map[i][x] == ' ')
-			if (!_there_is_walls(map, i, x))
+			if (!_check_space_col(map, i, x))
 				return (false);
 		i++;
 	}
@@ -151,6 +151,60 @@ bool	_check_top_bot(char *line)
 			return (true);
 		if (line[i] != '1' && line[i] != ' ')
 			return (false);
+		i++;
+	}
+	return (true);
+}
+
+bool	_check_space_row(char **map, int y, int x)
+{
+	int	i;
+
+	i = x;
+	while (i >= 0)
+	{
+		if (map[y][i] != '1' && map[y][i] != 'N' && map[y][i] != 'S'
+			&& map[y][i] != 'E' && map[y][i] != 'W' && map[y][i] != '0' && map[y][i] != ' ')
+			return (false);
+		if (map[y][i] == '1')
+			break ;
+		i--;
+	}
+	i = x;
+	while (map[y][i])
+	{
+		if (map[y][i] != '1' && map[y][i] != 'N' && map[y][i] != 'S'
+			&& map[y][i] != 'E' && map[y][i] != 'W' && map[y][i] != '0' && map[y][i] != ' ')
+			return (false);
+		if (map[y][i] == '1')
+			break ;
+		i++;
+	}
+	return (true);
+}
+
+bool	_check_space_col(char **map, int y, int x)
+{
+	int	i;
+
+	i = y;
+	while (i >= 0)
+	{
+		if (map[i][x] != '1' && map[i][x] != 'N' && map[i][x] != 'S'
+			&& map[i][x] != 'E' && map[i][x] != 'W' && map[i][x] != '0' && map[i][x] != ' ')
+			return (false);
+		if (map[i][x] == '1')
+			break ;
+		i--;
+	}
+	i = y;
+	while (map[i])
+	{
+		if (map[i][x] != '1' && map[i][x] != 'N' && map[i][x] != 'S'
+			&& map[i][x] != 'E' && map[i][x] != 'W' && map[i][x] != '0' && map[i][x] != ' ')
+			return (false);
+		if (map[i][x] == '1')
+			break ;
 		i++;
 	}
 	return (true);

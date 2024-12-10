@@ -99,6 +99,8 @@ bool	_there_is_walls(char **map, int row, int col);
 bool	_check_closed_map(t_game *game);
 bool	_check_cols(char **map, int y, int x);
 bool	_check_rows(char **map, int y, int x);
+bool	_check_space_row(char **map, int y, int x);
+bool	_check_space_col(char **map, int y, int x);
 bool	_check_top_bot(char *line);
 int     _get_map_width(char **map);
 int     _get_map_height(char **map);
