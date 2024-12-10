@@ -49,6 +49,7 @@ bool	_check_closed_map(t_game *game)
 		j = 0;
 		while (game->data.map[i][j])
 		{
+			printf("%c", game->data.map[i][j]);
 			if (game->data.map[i][j] == '0')
 			{
 				if (!_there_is_walls(game->data.map, i, j))
@@ -78,13 +79,12 @@ bool	_check_rows(char **map, int y, int x)
 	i = x;
 	while (i >= 0)
 	{
-		printf("left = %c\n", map[y][i]);
 		if (map[y][i] != '1' && map[y][i] != 'N' && map[y][i] != 'S'
 			&& map[y][i] != 'E' && map[y][i] != 'W' && map[y][i] != '0' && map[y][i] != ' ')
 			return (false);
-		else if (map[y][i] == '1')
+		if (map[y][i] == '1')
 			break ;
-		else if (map[y][i] == ' ')
+		if (map[y][i] == ' ')
 			if (!_there_is_walls(map, y, i))
 				return (false);
 		i--;
@@ -92,14 +92,14 @@ bool	_check_rows(char **map, int y, int x)
 	i = x;
 	while (map[y][i])
 	{
-		printf("right = %c\n", map[y][i]);
 		if (map[y][i] != '1' && map[y][i] != 'N' && map[y][i] != 'S'
 			&& map[y][i] != 'E' && map[y][i] != 'W' && map[y][i] != '0' && map[y][i] != ' ')
 			return (false);
 		if (map[y][i] == '1')
 			break ;
 		if (map[y][i] == ' ')
-			_there_is_walls(map, y, i);
+			if (!_there_is_walls(map, y, i))
+				return (false);
 		i++;
 	}
 	return (true);
@@ -112,21 +112,27 @@ bool	_check_cols(char **map, int y, int x)
 	i = y;
 	while (i >= 0)
 	{
-		if (map[i][x] == ' ')
-			_there_is_walls(map, i, x);
-		else if (map[i][x] != '1' && map[i][x] != 'N' && map[i][x] != 'S'
-			&& map[i][x] != 'E' && map[i][x] != 'W' && map[i][x] != '0')
+		if (map[i][x] != '1' && map[i][x] != 'N' && map[i][x] != 'S'
+			&& map[i][x] != 'E' && map[i][x] != 'W' && map[i][x] != '0' && map[i][x] != ' ')
 			return (false);
+		if (map[i][x] == '1')
+			break ;
+		if (map[i][x] == ' ')
+			if (!_there_is_walls(map, i, x))
+				return (false);
 		i--;
 	}
 	i = y;
 	while (map[i])
 	{
-		if (map[i][x] == ' ')
-			_there_is_walls(map, i, x);
-		else if (map[i][x] != '1' && map[i][x] != 'N' && map[i][x] != 'S'
-			&& map[i][x] != 'E' && map[i][x] != 'W' && map[i][x] != '0')
+		if (map[i][x] != '1' && map[i][x] != 'N' && map[i][x] != 'S'
+			&& map[i][x] != 'E' && map[i][x] != 'W' && map[i][x] != '0' && map[i][x] != ' ')
 			return (false);
+		if (map[i][x] == '1')
+			break ;
+		if (map[i][x] == ' ')
+			if (!_there_is_walls(map, i, x))
+				return (false);
 		i++;
 	}
 	return (true);
