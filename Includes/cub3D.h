@@ -97,10 +97,9 @@ void    _check_the_map(t_game *game);
 bool    _check_nb_player(char **map);
 bool	_there_is_walls(char **map, int row, int col);
 bool	_check_closed_map(t_game *game);
-bool	_check_cols(char **map, int col);
-bool	_check_rows(char **map, int row);
+bool	_check_cols(char **map, int y, int x);
+bool	_check_rows(char **map, int y, int x);
 bool	_check_top_bot(char *line);
-void	_get_in_map(t_game *game, int *row, int *col);
 int     _get_map_width(char **map);
 int     _get_map_height(char **map);
 

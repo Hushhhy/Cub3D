@@ -49,7 +49,7 @@ bool	_check_closed_map(t_game *game)
 		j = 0;
 		while (game->data.map[i][j])
 		{
-			if (game->data.map[i][j] == '0' || game->data.map[i][j] == ' ')
+			if (game->data.map[i][j] == '0')
 			{
 				if (!_there_is_walls(game->data.map, i, j))
 					return (false);
@@ -62,73 +62,74 @@ bool	_check_closed_map(t_game *game)
 	return (true);
 }
 
-bool	_there_is_walls(char **map, int row, int col)
+bool	_there_is_walls(char **map, int y, int x)
 {
-	if (!_check_rows(map, row))
+	if (!_check_rows(map, y, x))
 		return (false);
-	if (!_check_cols(map, col))
+	if (!_check_cols(map, y, x))
 		return (false);
 	return (true);
 }
 
-bool	_check_rows(char **map, int row)
+bool	_check_rows(char **map, int y, int x)
 {
 	int	i;
 
-	i = row;
+	i = x;
 	while (i >= 0)
 	{
-		printf("map[%d][row] = %c\n", i, map[i][row]);
-		if (map[i][row] == '1')
-			return (true);
-		if (map[i][row] != ' ' && map[i][row] != '0' && map[i][row] != 'N'
-			&& map[i][row] != 'S' && map[i][row] != 'E' && map[i][row] != 'W')
+		printf("left = %c\n", map[y][i]);
+		if (map[y][i] != '1' && map[y][i] != 'N' && map[y][i] != 'S'
+			&& map[y][i] != 'E' && map[y][i] != 'W' && map[y][i] != '0' && map[y][i] != ' ')
 			return (false);
+		else if (map[y][i] == '1')
+			break ;
+		else if (map[y][i] == ' ')
+			if (!_there_is_walls(map, y, i))
+				return (false);
 		i--;
 	}
-	i = row;
-	while (map[i])
+	i = x;
+	while (map[y][i])
 	{
-		printf("map[%d][row] = %c\n", i, map[i][row]);
-		if (map[i][row] == '1')
-			return (true);
-		if (map[i][row] != ' ' && map[i][row] != '0' && map[i][row] != 'N'
-			&& map[i][row] != 'S' && map[i][row] != 'E' && map[i][row] != 'W')
+		printf("right = %c\n", map[y][i]);
+		if (map[y][i] != '1' && map[y][i] != 'N' && map[y][i] != 'S'
+			&& map[y][i] != 'E' && map[y][i] != 'W' && map[y][i] != '0' && map[y][i] != ' ')
 			return (false);
+		if (map[y][i] == '1')
+			break ;
+		if (map[y][i] == ' ')
+			_there_is_walls(map, y, i);
 		i++;
 	}
-	return (false);
+	return (true);
 }
 
-bool	_check_cols(char **map, int col)
+bool	_check_cols(char **map, int y, int x)
 {
 	int	i;
 
-	i = col;
-	if (!map[i])
-		return (false);
+	i = y;
 	while (i >= 0)
 	{
-		printf("map[col][%d] = %c\n", i, map[col][i]);
-		if (map[i][col] == '1')
-			return (true);
-		if (map[i][col] != ' ' && map[i][col] != '0' && map[i][col] != 'N'
-			&& map[i][col] != 'S' && map[i][col] != 'E' && map[i][col] != 'W')
+		if (map[i][x] == ' ')
+			_there_is_walls(map, i, x);
+		else if (map[i][x] != '1' && map[i][x] != 'N' && map[i][x] != 'S'
+			&& map[i][x] != 'E' && map[i][x] != 'W' && map[i][x] != '0')
 			return (false);
 		i--;
 	}
-	i = col;
+	i = y;
 	while (map[i])
 	{
-		printf("map[col][%d] = %c\n", i, map[col][i]);
-		if (map[i][col] == '1')
-			return (true);
-		if (map[i][col] != ' ' && map[i][col] != '0' && map[i][col] != 'N'
-			&& map[i][col] != 'S' && map[i][col] != 'E' && map[i][col] != 'W')
+		if (map[i][x] == ' ')
+			_there_is_walls(map, i, x);
+		else if (map[i][x] != '1' && map[i][x] != 'N' && map[i][x] != 'S'
+			&& map[i][x] != 'E' && map[i][x] != 'W' && map[i][x] != '0')
 			return (false);
 		i++;
 	}
-	return (false);
+	return (true);
 }
 
 bool	_check_top_bot(char *line)
@@ -140,7 +141,6 @@ bool	_check_top_bot(char *line)
 		i++;
 	while (line[i])
 	{
-		printf("line[%d] = %c\n", i, line[i]);
 		if (line[i] == '\n')
 			return (true);
 		if (line[i] != '1' && line[i] != ' ')
@@ -148,31 +148,6 @@ bool	_check_top_bot(char *line)
 		i++;
 	}
 	return (true);
-}
-
-void	_get_in_map(t_game *game, int *row, int *col)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (game->data.map[i])
-    {
-        j = 0;
-        while (game->data.map[i][j])
-        {
-            if (game->data.map[i][j] == '0')
-            {
-                *row = i;
-                *col = j;
-                return;
-            }
-            j++;
-        }
-        i++;
-    }
-    *row = -1;
-    *col = -1;
 }
 
 
