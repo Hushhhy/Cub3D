@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 10:35:31 by codespace         #+#    #+#             */
-/*   Updated: 2024/12/04 13:53:55 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/12/11 15:23:57 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,13 @@ typedef struct s_data {
 	char	*ea_texture;
 	char	*floor_color;
 	char	*ceiling_color;
+	int		f_red;
+	int		f_green;
+	int		f_blue;
+	int		c_red;
+	int		c_green;
+	int		c_blue;
+	int		*c_color;
 	char	**map;
 	int		map_width;
 	int		map_height;

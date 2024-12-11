@@ -6,7 +6,7 @@
 #    By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/06 20:27:40 by acarpent          #+#    #+#              #
-#    Updated: 2024/12/09 13:47:51 by acarpent         ###   ########.fr        #
+#    Updated: 2024/12/11 14:59:30 by acarpent         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,15 +47,22 @@ MLX_EX = $(MLX_DIR)/libmlx.a
 ######  SOURCES  ######
 
 SRCS_FILES = Main_functions/main.c\
-				Parsing/parsing.c\
-				Parsing/parsing_utils.c\
-				Parsing/file_parsing.c\
-				Parsing/file_parsing_utils.c\
-				Parsing/file_parsing_utils1.c\
-				Parsing/map_parsing.c\
-				Parsing/check_map.c\
-				Parsing/check_map_utils.c\
 				Initialisation/init.c\
+				Parsing/Name/check_name.c\
+				Parsing/Env/env_check.c\
+				Parsing/File/get_file.c\
+				Parsing/File/file_parsing.c\
+				Parsing/File/file_parsing_utils.c\
+				Parsing/File/Data/get_textures.c\
+				Parsing/File/Data/get_colors.c\
+				Parsing/File/Data/data_utils.c\
+				Parsing/File/Data/data_check.c\
+				Parsing/Map/get_map.c\
+				Parsing/Map/Data/get_map_data.c\
+				Parsing/Map/Check/map_parsing.c\
+				Parsing/Map/Check/map_parsing_utils.c\
+				Parsing/Map/Check/check_dir.c\
+				Parsing/Map/Check/check_space_dir.c\
 
 SRCS = $(addprefix $(SRCS_DIR), $(SRCS_FILES))			
 

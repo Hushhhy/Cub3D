@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 14:14:51 by acarpent          #+#    #+#             */
-/*   Updated: 2024/12/09 14:36:47 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/12/11 16:20:10 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,13 @@ bool	_check_cols(char **map, int y, int x);
 bool	_check_rows(char **map, int y, int x);
 bool	_check_space_row(char **map, int y, int x);
 bool	_check_space_col(char **map, int y, int x);
+bool	_check_spaces(char **map, int y, int x);
+bool	_check_left(char **map, int y, int i);
+bool	_check_right(char **map, int y, int i);
+bool	_check_up(char **map, int i, int x);
+bool	_check_down(char **map, int i, int x);
 bool	_check_top_bot(char *line);
+void	_get_ceiling(char *color, t_game *game);
 int     _get_map_width(char **map);
 int     _get_map_height(char **map);
 
