@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 12:22:38 by acarpent          #+#    #+#             */
-/*   Updated: 2024/12/11 15:25:22 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/12/12 14:45:05 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,8 @@ void	_data_init(t_game *game)
 	game->data.ea_texture = NULL;
 	game->data.floor_color = NULL;
 	game->data.ceiling_color = NULL;
-	game->data.f_red = -1;
-	game->data.f_green = -1;
-	game->data.f_blue = -1;
-	game->data.c_red = -1;
-	game->data.c_green = -1;
-	game->data.c_blue = -1;
+	game->data.ceiling_rgb = -1;
+	game->data.floor_rgb = -1;
 	game->data.map = NULL;
 	game->data.map_width = -1;
 	game->data.map_height = -1;
@@ -42,6 +38,7 @@ void	_player_init(t_game *game)
 	game->player.dir_y = -1;
 	game->player.plane_x = -1;
 	game->player.plane_y = -1;
+	game->player.p_count = 0;
 	_ray_init(game);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_textures.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 13:03:24 by acarpent          #+#    #+#             */
-/*   Updated: 2024/12/11 13:04:28 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/12/12 14:09:06 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,7 @@ void	_north_check(t_game *game, char *line)
 			game->data.no_texture[j] = '\0';
 		}
 		else
-		{
-			ft_putstr_fd("Error\nToo many north texture\n", 2);
-			exit(1);
-		}
+			exit(_error_msg_free("Detail", ERR_NORTH, 1, game));
 	}
 }
 
@@ -63,10 +60,7 @@ void	_south_check(t_game *game, char *line)
 			game->data.so_texture[j] = '\0';
 		}
 		else
-		{
-			ft_putstr_fd("Error\nToo many south texture\n", 2);
-			exit(1);
-		}
+			exit(_error_msg_free("Detail", ERR_SOUTH, 1, game));
 	}
 }
 
@@ -92,10 +86,7 @@ void	_east_check(t_game *game, char *line)
 			game->data.ea_texture[j] = '\0';
 		}
 		else
-		{
-			ft_putstr_fd("Error\nToo many east texture\n", 2);
-			exit(1);
-		}
+			exit(_error_msg_free("Detail", ERR_EAST, 1, game));
 	}
 }
 
@@ -121,9 +112,6 @@ void	_west_check(t_game *game, char *line)
 			game->data.we_texture[j] = '\0';
 		}
 		else
-		{
-			ft_putstr_fd("Error\nToo many west texture\n", 2);
-			exit(1);
-		}
+			exit(_error_msg_free("Detail", ERR_WEST, 1, game));
 	}
 }

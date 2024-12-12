@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 14:04:42 by acarpent          #+#    #+#             */
-/*   Updated: 2024/12/11 15:32:21 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/12/12 14:12:51 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,13 @@
 void	_check_the_map(t_game *game)
 {
 	if (!game->data.map)
-	{
-		ft_putstr_fd("Error\nMap not found\n", 2);
-		exit(1);
-	}
+		exit(_error_msg_free("Detail", ERR_NO_MAP, 1, game));
 	if (_get_map_height(game->data.map) < 3)
-	{
-		ft_putstr_fd("Error\nMap too small\n", 2);
-		exit(1);
-	}
+		exit(_error_msg_free("Detail", ERR_SMALL_MAP, 1, game));
 	if (!_check_nb_player(game->data.map))
-	{
-		ft_putstr_fd("Error\nNo or too many players\n", 2);
-		exit(1);
-	}
+		exit(_error_msg_free("Detail", ERR_PLAYER, 1, game));
 	if (!_check_closed_map(game))
-	{
-		ft_putstr_fd("Error\nMap not closed\n", 2);
-		exit(1);
-	}
+		exit(_error_msg_free("Detail", ERR_CLOSED, 1, game));
 }
 
 bool	_check_nb_player(char **map)

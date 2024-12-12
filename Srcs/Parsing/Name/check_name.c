@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_name.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 13:00:26 by acarpent          #+#    #+#             */
-/*   Updated: 2024/12/11 13:00:42 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/12/12 13:56:59 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,22 @@ void	_checkname(char *name)
 
 	ext = ft_strrchr(name, '.');
 	if (!ext || ft_strncmp(ext, ".cub\0", 5))
+		exit(_error_msg("Detail", ERR_NAME, 1));
+	if (_is_directory(name))
+		exit(_error_msg("Detail", ERR_IS_DIR, 1));
+}
+
+bool	_is_directory(char *name)
+{
+	int		fd;
+	bool	ret;
+
+	ret = false;
+	fd = open(name, O_DIRECTORY);
+	if (fd >= 0)
 	{
-		ft_putstr_fd("Error\nWrong file extension\n", 2);
-		exit(0);
+		close (fd);
+		ret = true;
 	}
+	return (ret);
 }

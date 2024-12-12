@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_parsing_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 15:13:24 by acarpent          #+#    #+#             */
-/*   Updated: 2024/12/11 13:09:39 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/12/12 14:38:48 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	_verify(t_game *game, int i)
 	char	*line;
 	int		last;
 
+	line = NULL;
 	start = _emptylines(game, i) - 1;
 	last = -1;
 	while (game->data.file[start++])
@@ -28,17 +29,11 @@ void	_verify(t_game *game, int i)
 		else if (last != -1)
 			break ;
 		if (_is_invalid(line, game))
-		{
-			ft_putstr_fd("Error\nInvalid character in map\n", 2);
-			exit(1);
-		}
+			exit(_error_msg_free("Error", ERR_CHAR, 1, game));
 	}
 	_after_map(game, last);
 	if (i == start || game->player.p_count != 1 || last == -1)
-	{
-		ft_putstr_fd("Error\nInvalid file format\n", 2);
-		exit(1);
-	}
+		exit(_error_msg_free("Detail", ERR_FORMAT, 1, game));
 }
 
 int	_emptylines(t_game *game, int start)
@@ -55,10 +50,7 @@ int	_emptylines(t_game *game, int start)
 			|| (game->data.file[lc][i] == '\n')))
 			i++;
 		if (game->data.file[lc][i] != '\0' && game->data.file[lc][i] != '1')
-		{
-			ft_putstr_fd("Error\nInvalid file format\n", 2);
-			exit(1);
-		}
+			exit(_error_msg_free("Detail", ERR_FORMAT, 1, game));
 		else if (game->data.file[lc][i] == '1')
 			break ;
 		lc++;
@@ -114,10 +106,7 @@ void	_after_map(t_game *game, int last)
 	{
 		line = game->data.file[i];
 		if (!_line_empty(line))
-		{
-			ft_putstr_fd("Error\nCharacter after map\n", 2);
-			exit(1);
-		}
+			exit(_error_msg_free("Detail", ERR_AFTER, 1, game));
 		i++;
 	}
 }

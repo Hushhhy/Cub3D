@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_parsing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 14:56:40 by acarpent          #+#    #+#             */
-/*   Updated: 2024/12/11 13:09:17 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/12/12 14:07:37 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	_parse_file(t_game *game)
 	_emptyfile(game);
 	while (game->data.file[i])
 	{
-		_char_check(game->data.file[i]);
+		_char_check(game->data.file[i], game);
 		_north_check(game, game->data.file[i]);
 		_south_check(game, game->data.file[i]);
 		_east_check(game, game->data.file[i]);
@@ -33,6 +33,7 @@ void	_parse_file(t_game *game)
 		{
 			_verify(game, i);
 			_getmap(game, i);
+			ft_free(game->data.file);
 			return ;
 		}
 		i++;
@@ -59,13 +60,10 @@ void	_emptyfile(t_game *game)
 		i++;
 	}
 	if (flag == 0)
-	{
-		ft_putstr_fd("Error\nEmpty file\n", 2);
-		exit(1);		
-	}
+		exit(_error_msg_free("Error", ERR_EMPTY, 1, game));
 }
 
-void	_char_check(char *line)
+void	_char_check(char *line, t_game *game)
 {
 	int	i;
 
@@ -77,8 +75,5 @@ void	_char_check(char *line)
 	if (ft_strncmp(line, "NO ", 3) && ft_strncmp(line, "SO ", 3)
 		&& ft_strncmp(line, "EA ", 3) && ft_strncmp(line, "WE ", 3)
 		&& ft_strncmp(line, "C ", 2) && ft_strncmp(line, "F ", 2))
-	{
-		ft_putstr_fd("Error\nInvalid character in file\n", 2);
-		exit(1);
-	}
+		exit(_error_msg_free("Error", ERR_CHAR, 1, game));
 }

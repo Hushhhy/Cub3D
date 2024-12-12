@@ -21,13 +21,8 @@ typedef struct s_data {
 	char	*ea_texture;
 	char	*floor_color;
 	char	*ceiling_color;
-	int		f_red;
-	int		f_green;
-	int		f_blue;
-	int		c_red;
-	int		c_green;
-	int		c_blue;
-	int		*c_color;
+	int		ceiling_rgb;
+	int		floor_rgb;
 	char	**map;
 	int		map_width;
 	int		map_height;
