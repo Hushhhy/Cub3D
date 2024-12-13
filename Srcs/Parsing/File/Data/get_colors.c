@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_colors.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 13:04:47 by acarpent          #+#    #+#             */
-/*   Updated: 2024/12/12 14:29:56 by codespace        ###   ########.fr       */
+/*   Updated: 2024/12/13 13:06:28 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	_floor_check(t_game *game, char *line)
 		i += 2;
 		while (line[i] && (line[i] == ' ' || line[i] == '\t'))
 			i++;
-        if (!game->data.floor_color)
+		if (!game->data.floor_color)
 		{
 			_get_floor(line, game);
 			game->data.floor_color = _new_alloc(i, line);
@@ -53,7 +53,7 @@ void	_ceiling_check(t_game *game, char *line)
 		i += 2;
 		while (line[i] && (line[i] == ' ' || line[i] == '\t'))
 			i++;
-        if (!game->data.ceiling_color)
+		if (!game->data.ceiling_color)
 		{
 			_get_ceiling(line, game);
 			game->data.ceiling_color = _new_alloc(i, line);

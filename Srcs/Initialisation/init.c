@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 12:22:38 by acarpent          #+#    #+#             */
-/*   Updated: 2024/12/12 14:45:05 by codespace        ###   ########.fr       */
+/*   Updated: 2024/12/13 14:21:55 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@ void	_ray_init(t_game *game)
 	game->ray.step_y = -1;
 	game->ray.hit = -1;
 	game->ray.side = -1;
-	_mlx_init(game);
+	_mlx_struct_init(game);
 }
 
-void	_mlx_init(t_game *game)
+void	_mlx_struct_init(t_game *game)
 {
 	game->mlx.mlx_ptr = NULL;
 	game->mlx.win_ptr = NULL;

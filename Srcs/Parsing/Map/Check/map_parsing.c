@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 14:04:42 by acarpent          #+#    #+#             */
-/*   Updated: 2024/12/12 14:12:51 by codespace        ###   ########.fr       */
+/*   Updated: 2024/12/13 15:04:12 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ void	_check_the_map(t_game *game)
 		exit(_error_msg_free("Detail", ERR_NO_MAP, 1, game));
 	if (_get_map_height(game->data.map) < 3)
 		exit(_error_msg_free("Detail", ERR_SMALL_MAP, 1, game));
-	if (!_check_nb_player(game->data.map))
+	if (!_check_nb_player(game->data.map, game))
 		exit(_error_msg_free("Detail", ERR_PLAYER, 1, game));
 	if (!_check_closed_map(game))
 		exit(_error_msg_free("Detail", ERR_CLOSED, 1, game));
 }
 
-bool	_check_nb_player(char **map)
+bool	_check_nb_player(char **map, t_game *game)
 {
 	int		i;
 	int		j;
@@ -33,22 +33,30 @@ bool	_check_nb_player(char **map)
 	i = 0;
 	j = 0;
 	flag = false;
-	while (map[j])
+	while (map[i])
 	{
-		while (map[j][i])
+		j = 0;
+		while (map[i][j])
 		{
-			if (map[j][i] == 'O' || map[j][i] == 'N'
-				|| map[j][i] == 'E' || map[j][i] == 'S')
+			if (map[i][j] == 'O' || map[i][j] == 'N'
+				|| map[i][j] == 'E' || map[i][j] == 'S')
 			{
 				if (flag == true)
 					return (false);
+				_player_pos(game, i, j);
 				flag = true;
 			}
-			i++;
+			j++;
 		}
-		j++;
+		i++;
 	}
 	return (true);
+}
+
+void	_player_pos(t_game *game, int i, int j)
+{
+	game->player.pos_x = j;
+	game->player.pos_y = i;
 }
 
 bool	_check_closed_map(t_game *game)

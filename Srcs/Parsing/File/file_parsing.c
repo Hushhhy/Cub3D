@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_parsing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 14:56:40 by acarpent          #+#    #+#             */
-/*   Updated: 2024/12/12 14:07:37 by codespace        ###   ########.fr       */
+/*   Updated: 2024/12/13 13:04:21 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	_emptyfile(t_game *game)
 {
 	int	i;
 	int	j;
-	int flag;
+	int	flag;
 
 	i = 0;
 	flag = 0;

@@ -6,9 +6,12 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 10:35:31 by codespace         #+#    #+#             */
-/*   Updated: 2024/12/11 15:23:57 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/12/13 13:58:06 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef STRUCT_H
+# define STRUCT_H
 
 /*----------------------Structs and lists---------------------------*/
 
@@ -26,7 +29,7 @@ typedef struct s_data {
 	char	**map;
 	int		map_width;
 	int		map_height;
-} t_data;
+}	t_data;
 
 typedef struct s_player {
 	int		p_count;
@@ -36,7 +39,7 @@ typedef struct s_player {
 	double	dir_y;
 	double	plane_x;
 	double	plane_y;
-} t_player;
+}	t_player;
 
 typedef struct s_ray {
 	double	pos_x;
@@ -69,3 +72,5 @@ typedef struct s_game {
 	t_player	player;
 	t_data		data;
 }	t_game;
+
+#endif

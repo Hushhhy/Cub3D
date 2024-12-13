@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 16:11:54 by acarpent          #+#    #+#             */
-/*   Updated: 2024/12/02 16:04:34 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/12/13 14:00:50 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <stdint.h>
 
 # ifndef BUFFER_SIZE
-# define BUFFER_SIZE 42
+#  define BUFFER_SIZE 42
 # endif
 
 typedef struct s_list
@@ -79,20 +79,20 @@ int			ft_strcmp(const char *s1, const char *s2);
 
 // PRINTF
 
-int		ft_hexalen(unsigned long int n, char c);
-int		ft_printf(const char *format, ...);
-int		ft_check(const char format, va_list arg);
-int		ft_ptrlen(void *p);
-int		ft_putcharlen(char c);
-int		ft_putnbrlen(int n);
-int		ft_putstrlen(char *s);
-int		ft_unsilen(unsigned int n);
+int			ft_hexalen(unsigned long int n, char c);
+int			ft_printf(const char *format, ...);
+int			ft_check(const char format, va_list arg);
+int			ft_ptrlen(void *p);
+int			ft_putcharlen(char c);
+int			ft_putnbrlen(int n);
+int			ft_putstrlen(char *s);
+int			ft_unsilen(unsigned int n);
 
 // GET_NEXT_LINE
 
-char	*get_next_line(int fd);
-char	*ft_cleanup(char *stash);
-int		ft_readbuffer(char *buffer);
-char	*ft_line(char *str);
+char		*get_next_line(int fd);
+char		*ft_cleanup(char *stash);
+int			ft_readbuffer(char *buffer);
+char		*ft_line(char *str);
 
 #endif

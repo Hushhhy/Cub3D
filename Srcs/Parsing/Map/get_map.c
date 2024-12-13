@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 13:10:40 by acarpent          #+#    #+#             */
-/*   Updated: 2024/12/12 14:52:31 by codespace        ###   ########.fr       */
+/*   Updated: 2024/12/13 12:55:50 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	_getmap(t_game *game, int i)
 
 	k = 0;
 	start = _emptylines(game, i);
-	size = _get_map_size(game, start);
+	size = _get_map_size(game, start) + 1;
 	game->data.map = malloc(sizeof(char *) * (size + 1));
 	if (!game->data.map)
 		return ;

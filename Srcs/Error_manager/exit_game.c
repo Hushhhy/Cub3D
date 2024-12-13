@@ -1,39 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_name.c                                       :+:      :+:    :+:   */
+/*   exit_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 13:00:26 by acarpent          #+#    #+#             */
-/*   Updated: 2024/12/13 15:18:46 by acarpent         ###   ########.fr       */
+/*   Created: 2024/12/13 15:29:04 by acarpent          #+#    #+#             */
+/*   Updated: 2024/12/13 15:31:39 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	_checkname(char *name)
-{
-	char	*ext;
+//Close and exit game file
 
-	ext = ft_strrchr(name, '.');
-	if (!ext || ft_strncmp(ext, ".cub\0", 5))
-		exit(_error_msg("Detail", ERR_NAME, 1));
-	if (_is_directory(name))
-		exit(_error_msg("Detail", ERR_IS_DIR, 1));
-}
-
-bool	_is_directory(char *name)
-{
-	int		fd;
-	bool	ret;
-
-	ret = false;
-	fd = open(name, O_DIRECTORY);
-	if (fd >= 0)
-	{
-		close (fd);
-		ret = true;
-	}
-	return (ret);
-}
+// int	_close_game(t_game *game)
+// {
+// 	_del_img(game);
+// 	if (game->mlx.win_ptr)
+// 		mlx_destroy_window(game->mlx.mlx_ptr, game->mlx.win_ptr);
+// 	mlx_destroy_display(game->mlx.mlx_ptr);
+// 	_has_to_free(game);
+// 	exit(0);
+// }

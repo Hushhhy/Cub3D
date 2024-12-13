@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 12:22:44 by acarpent          #+#    #+#             */
-/*   Updated: 2024/12/12 13:33:35 by codespace        ###   ########.fr       */
+/*   Updated: 2024/12/13 15:22:45 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,6 @@ int	main(int ac, char **av)
 	if (!_getfile(&game, av[1]))
 		return (_error_msg("Detail", ERR_GET_FILE, 1));
 	_parse_file(&game);
+	_init_mlx(&game);
+	_gaming(&game);
 }

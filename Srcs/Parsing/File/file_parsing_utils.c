@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_parsing_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 15:13:24 by acarpent          #+#    #+#             */
-/*   Updated: 2024/12/12 14:38:48 by codespace        ###   ########.fr       */
+/*   Updated: 2024/12/13 13:04:36 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,4 +110,3 @@ void	_after_map(t_game *game, int last)
 		i++;
 	}
 }
-

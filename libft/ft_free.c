@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 14:22:00 by acarpent          #+#    #+#             */
-/*   Updated: 2024/07/10 14:05:24 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/12/13 13:58:37 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,6 @@ void	ft_free(char **ptr)
 	int	i;
 
 	i = 0;
-	// if (!ptr)
-	// {
-	// 	free(ptr);
-	// 	return ;
-	// }
 	while (ptr[i])
 	{
 		free(ptr[i]);

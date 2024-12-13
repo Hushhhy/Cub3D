@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 14:14:51 by acarpent          #+#    #+#             */
-/*   Updated: 2024/12/12 14:21:21 by codespace        ###   ########.fr       */
+/*   Updated: 2024/12/13 15:14:08 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,18 @@
 # ifndef O_DIRECTORY
 #  define O_DIRECTORY 00200000
 # endif
+
+/*-------------------------WINDOW DETAILS---------------------------*/
+
+# define WIN_WIDTH 1920
+# define WIN_HEIGHT 1080
+
+/*--------------------------GAME DETAILS----------------------------*/
+
+# define TILE_SIZE 30
+# define FOV 60
+# define ROTATION_SPEED 0.045
+# define PLAYER_SPEED 4
 
 /*----------------------------COLORS--------------------------------*/
 
@@ -60,6 +72,8 @@
 # define ERR_COLOR_FORMAT "Invalid color format"
 # define ERR_COLOR_RANGE "Color out of range"
 # define ERR_COMA "Coma number must be 2"
+# define ERR_MLX_INIT "Could not init mlx"
+# define ERR_MLX_WIN "Could not create window"
 
 /*------------------------MAIN FUNCTIONS----------------------------*/
 
@@ -70,19 +84,20 @@ int		main(int ac, char **av);
 void	_data_init(t_game *game);
 void	_player_init(t_game *game);
 void	_ray_init(t_game *game);
-void	_mlx_init(t_game *game);
+void	_mlx_struct_init(t_game *game);
+void	_init_mlx(t_game *game);
 
 /*----------------------------PARSING-------------------------------*/
 
 /*---------------------------------*/
 /*--ERROR--*/
 
-int 	_error_msg_free(char *det, char *str, int code, t_game *game);
-int	    _error_msg(char *det, char *str, int code);
-int	    _err_msg_val(int detail, char *str, int code, t_game *game);
-void    _has_to_free(t_game *game);
-void    _free_texture(char *no, char *so, char *ea, char *we);
-void    _free_colors(char *ceiling, char *floor);
+int		_error_msg_free(char *det, char *str, int code, t_game *game);
+int		_err_msg_val(int detail, char *str, int code, t_game *game);
+void	_free_texture(char *no, char *so, char *ea, char *we);
+int		_error_msg(char *det, char *str, int code);
+void	_free_colors(char *ceiling, char *floor);
+void	_has_to_free(t_game *game);
 
 /*---------------------------------*/
 /*--NAME OR DIR--*/
@@ -93,7 +108,7 @@ bool	_is_directory(char *name);
 /*---------------------------------*/
 /*--GET FILE--*/
 
-int     _getfile(t_game *game, char *file);
+int		_getfile(t_game *game, char *file);
 char	**_gnl_in_file(t_game *game, int lc);
 char	*_new_alloc(int start, char *line);
 
@@ -101,7 +116,7 @@ char	*_new_alloc(int start, char *line);
 /*--FILE PARSING--*/
 
 void	_parse_file(t_game *game);
-int	    _get_size(t_game *game);
+int		_get_size(t_game *game);
 void	_char_check(char *line, t_game *game);
 void	_emptyfile(t_game *game);
 
@@ -114,40 +129,42 @@ void	_east_check(t_game *game, char *line);
 void	_west_check(t_game *game, char *line);
 void	_ceiling_check(t_game *game, char *line);
 void	_floor_check(t_game *game, char *line);
+void	_get_ceiling(char *color, t_game *game);
+void	_get_floor(char *color, t_game *game);
+void	_coma_check(char *color, t_game *game);
 
 /*---------------------------------*/
 /*--GET MAP--*/
 
 void	_getmap(t_game *game, int i);
 void	_verify(t_game *game, int start);
-int	    _is_invalid(char *line, t_game *game);
+int		_is_invalid(char *line, t_game *game);
 void	_after_map(t_game *game, int last);
-int	    _emptylines(t_game *game, int start);
-int	    _line_empty(char *line);
-int	    _get_map_size(t_game *game, int i);
+int		_emptylines(t_game *game, int start);
+int		_line_empty(char *line);
+int		_get_map_size(t_game *game, int i);
 
 /*---------------------------------*/
 /*--MAP PARSING--*/
 
-void        _check_the_map(t_game *game);
-bool        _check_nb_player(char **map);
-bool	    _there_is_walls(char **map, int row, int col);
-bool	    _check_closed_map(t_game *game);
-bool	    _check_cols(char **map, int y, int x);
-bool	    _check_rows(char **map, int y, int x);
-bool	    _check_space_row(char **map, int y, int x);
-bool	    _check_space_col(char **map, int y, int x);
-bool	    _check_spaces(char **map, int y, int x);
-bool	    _check_left(char **map, int y, int i);
-bool	    _check_right(char **map, int y, int i);
-bool	    _check_up(char **map, int i, int x);
-bool	    _check_down(char **map, int i, int x);
-bool	    _check_top_bot(char *line);
-void	    _get_ceiling(char *color, t_game *game);
-void	    _get_floor(char *color, t_game *game);
-void        _coma_check(char *color, t_game *game);
-int         _get_map_width(char **map);
-int         _get_map_height(char **map);
-
+int		_get_map_width(char **map);
+int		_get_map_height(char **map);
+void	_check_the_map(t_game *game);
+bool	_check_nb_player(char **map, t_game *game);
+void	_player_pos(t_game *game, int i, int j);
+bool	_there_is_walls(char **map, int row, int col);
+bool	_check_closed_map(t_game *game);
+bool	_check_top_bot(char *line);
+bool	_check_rows(char **map, int y, int x);
+bool	_check_cols(char **map, int y, int x);
+bool	_check_left(char **map, int y, int i);
+bool	_check_right(char **map, int y, int i);
+bool	_check_up(char **map, int i, int x);
+bool	_check_down(char **map, int i, int x);
+bool	_check_spaces(char **map, int y, int x);
+bool	_check_space_row(char **map, int y, int x);
+bool	_check_space_col(char **map, int y, int x);
+bool	_check_space_left(char **map, int y, int i);
+bool	_check_space_up(char **map, int i, int x);
 
 #endif

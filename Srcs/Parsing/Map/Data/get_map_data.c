@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 13:14:52 by acarpent          #+#    #+#             */
-/*   Updated: 2024/12/11 13:15:36 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/12/13 13:08:07 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	_get_map_width(char **map)
 
 int	_get_map_height(char **map)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!map)
