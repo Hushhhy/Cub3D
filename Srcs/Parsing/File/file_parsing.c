@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 14:56:40 by acarpent          #+#    #+#             */
-/*   Updated: 2024/12/13 13:04:21 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/12/16 13:29:43 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	_parse_file(t_game *game)
 			_verify(game, i);
 			_getmap(game, i);
 			ft_free(game->data.file);
+			_free_colors(game->data.ceiling_color, game->data.floor_color);
 			return ;
 		}
 		i++;

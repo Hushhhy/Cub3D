@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 14:14:51 by acarpent          #+#    #+#             */
-/*   Updated: 2024/12/13 15:14:08 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/12/16 15:46:43 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,20 @@
 # ifndef O_DIRECTORY
 #  define O_DIRECTORY 00200000
 # endif
+
+/*-----------------------------KEYS---------------------------------*/
+
+enum    e_keys {
+	KEY_ESC = 65307,
+	KEY_W = 119,
+	KEY_UP = 65362,
+	KEY_S = 115,
+	KEY_DOWN = 65364,
+	KEY_A = 97,
+	KEY_LEFT = 65361,
+	KEY_D = 100,
+	KEY_RIGHT = 65363, 
+};
 
 /*-------------------------WINDOW DETAILS---------------------------*/
 
@@ -74,6 +88,7 @@
 # define ERR_COMA "Coma number must be 2"
 # define ERR_MLX_INIT "Could not init mlx"
 # define ERR_MLX_WIN "Could not create window"
+# define ERR_XPM "Not a .xpm texture"
 
 /*------------------------MAIN FUNCTIONS----------------------------*/
 
@@ -127,6 +142,7 @@ void	_north_check(t_game *game, char *line);
 void	_south_check(t_game *game, char *line);
 void	_east_check(t_game *game, char *line);
 void	_west_check(t_game *game, char *line);
+void	_check_texname(char *name, t_game *game);
 void	_ceiling_check(t_game *game, char *line);
 void	_floor_check(t_game *game, char *line);
 void	_get_ceiling(char *color, t_game *game);

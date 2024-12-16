@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_textures.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 13:03:24 by acarpent          #+#    #+#             */
-/*   Updated: 2024/12/12 14:09:06 by codespace        ###   ########.fr       */
+/*   Updated: 2024/12/16 15:09:29 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	_north_check(t_game *game, char *line)
 			i++;
 		if (!game->data.no_texture)
 		{
+			_check_texname(line, game);
 			game->data.no_texture = _new_alloc(i, line);
 			while (line[i] && (line[i] != ' ' && line[i] != '\t'))
 				game->data.no_texture[j++] = line[i++];
@@ -54,6 +55,7 @@ void	_south_check(t_game *game, char *line)
 			i++;
 		if (!game->data.so_texture)
 		{
+			_check_texname(line, game);
 			game->data.so_texture = _new_alloc(i, line);
 			while (line[i] && (line[i] != ' ' && line[i] != '\t'))
 				game->data.so_texture[j++] = line[i++];
@@ -80,6 +82,7 @@ void	_east_check(t_game *game, char *line)
 			i++;
 		if (!game->data.ea_texture)
 		{
+			_check_texname(line, game);
 			game->data.ea_texture = _new_alloc(i, line);
 			while (line[i] && (line[i] != ' ' && line[i] != '\t'))
 				game->data.ea_texture[j++] = line[i++];
@@ -106,6 +109,7 @@ void	_west_check(t_game *game, char *line)
 			i++;
 		if (!game->data.we_texture)
 		{
+			_check_texname(line, game);
 			game->data.we_texture = _new_alloc(i, line);
 			while (line[i] && (line[i] != ' ' && line[i] != '\t'))
 				game->data.we_texture[j++] = line[i++];

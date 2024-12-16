@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/02 12:22:44 by acarpent          #+#    #+#             */
-/*   Updated: 2024/12/16 15:51:28 by acarpent         ###   ########.fr       */
+/*   Created: 2024/12/16 13:42:44 by acarpent          #+#    #+#             */
+/*   Updated: 2024/12/16 13:44:48 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	main(int ac, char **av)
+void    _init_textures(t_game *game)
 {
-	t_game	game;
-
-	if (ac != 2)
-		return (_error_msg("Usage", ERR_ARG, 1));
-	_checkname(av[1]);
-	_data_init(&game);
-	if (!_getfile(&game, av[1]))
-		return (_error_msg("Detail", ERR_GET_FILE, 1));
-	_parse_file(&game);
-	_init_mlx(&game);
-	// _init_textures(&game);
-	// _gaming(&game);
+    
 }

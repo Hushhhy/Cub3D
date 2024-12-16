@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 14:59:08 by acarpent          #+#    #+#             */
-/*   Updated: 2024/12/13 13:05:55 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/12/16 15:24:11 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,22 @@ static int	_parse_color_val(char *line, int *i, t_game *game)
 	if (line[*i] == ',')
 	(*i)++;
 	return (val);
+}
+
+void	_check_texname(char *name, t_game *game)
+{
+	char	*ext;
+
+	ext = ft_strchr(name, '.');
+	if (ft_strncmp(ext, ".xpm ", 5) && ft_strncmp(ext, ".xpm\t", 5)
+		&& ft_strncmp(ext, ".xpm\n", 5) && ft_strncmp(ext, ".xpm\0", 5))
+	{
+		ft_free(game->data.file);
+		_free_texture(game->data.no_texture, game->data.so_texture,
+			game->data.ea_texture, game->data.we_texture);
+		_free_colors(game->data.ceiling_color, game->data.floor_color);
+		exit(_error_msg("Texture", ERR_XPM, 1));
+	}
 }
 
 void	_get_ceiling(char *color, t_game *game)

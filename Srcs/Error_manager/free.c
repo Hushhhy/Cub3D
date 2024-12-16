@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 14:04:23 by codespace         #+#    #+#             */
-/*   Updated: 2024/12/13 13:03:52 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/12/16 15:43:10 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	_has_to_free(t_game *game)
 {
-	_free_texture(game->data.floor_color, game->data.ceiling_color,
+	_free_texture(game->data.no_texture, game->data.so_texture,
 		game->data.ea_texture, game->data.we_texture);
 	_free_colors(game->data.ceiling_color, game->data.floor_color);
 	if (game->data.file)

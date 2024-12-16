@@ -6,7 +6,7 @@
 /*   By: acarpent <acarpent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 14:04:42 by acarpent          #+#    #+#             */
-/*   Updated: 2024/12/13 15:04:12 by acarpent         ###   ########.fr       */
+/*   Updated: 2024/12/16 15:38:50 by acarpent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 void	_check_the_map(t_game *game)
 {
 	if (!game->data.map)
-		exit(_error_msg_free("Detail", ERR_NO_MAP, 1, game));
+		exit(_error_msg_free("MAP", ERR_NO_MAP, 1, game));
 	if (_get_map_height(game->data.map) < 3)
-		exit(_error_msg_free("Detail", ERR_SMALL_MAP, 1, game));
+		exit(_error_msg_free("MAP", ERR_SMALL_MAP, 1, game));
 	if (!_check_nb_player(game->data.map, game))
-		exit(_error_msg_free("Detail", ERR_PLAYER, 1, game));
+		exit(_error_msg_free("MAP", ERR_PLAYER, 1, game));
 	if (!_check_closed_map(game))
-		exit(_error_msg_free("Detail", ERR_CLOSED, 1, game));
+		exit(_error_msg_free("MAP", ERR_CLOSED, 1, game));
 }
 
 bool	_check_nb_player(char **map, t_game *game)
